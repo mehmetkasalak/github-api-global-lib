@@ -39,3 +39,8 @@ def environmentVars(){
             buildNumber    : env.BUILD_NUMBER,
             buildUrl       : env.BUILD_URL)
 }
+
+def paramsMethod(){
+    echo params.TEST_PARAM
+    return params
+}
