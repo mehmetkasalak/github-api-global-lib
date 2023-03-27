@@ -23,3 +23,11 @@ def runScriptCrossPlatform(String command) {
         powershell script: command
     }
 }
+
+def getRunAsBranch(){
+    def runAsBranch=env.BRANCH_NAME
+    if(params.RUN_AS_BRANCH != null && params.RUN_AS_BRANCH.trim().length() != 0){
+        runAsBranch=params.RUN_AS_BRANCH
+    }
+    return runAsBranch
+}
