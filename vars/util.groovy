@@ -31,3 +31,11 @@ def getRunAsBranch(){
     }
     return runAsBranch
 }
+
+def environmentVars(){
+    return mapToString (
+            applicationName: env.JOB_BASE_NAME,
+            sourceBranch   : env.GIT_BRANCH,
+            buildNumber    : env.BUILD_NUMBER,
+            buildUrl       : env.BUILD_URL)
+}
