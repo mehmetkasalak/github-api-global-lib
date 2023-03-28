@@ -34,10 +34,13 @@ def getRunAsBranch(){
 
 def environmentVars(){
     return mapToString (
-            applicationName: env.JOB_BASE_NAME,
-            sourceBranch   : env.GIT_BRANCH,
-            buildNumber    : env.BUILD_NUMBER,
-            buildUrl       : env.BUILD_URL)
+        applicationName : env.JOB_BASE_NAME,
+        sourceBranch    : env.GIT_BRANCH,
+        buildNumber     : env.BUILD_NUMBER,
+        buildUrl        : env.BUILD_URL,
+        sessionId       : env.SESSION_ID,
+        config          : env.DOTNET_BUILD_CONFIGURATION
+    )
 }
 
 def paramsMethod(params){
