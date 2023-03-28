@@ -44,6 +44,7 @@ def paramsMethod(String params){
     def slurper = new JsonSlurper()
     echo params
     def paramsObj = slurper.parseText(mapToString(params))
-    echo paramsObj.TIMEOUT
+    echo paramsObj
+    //echo paramsObj.TIMEOUT
     return params
 }
