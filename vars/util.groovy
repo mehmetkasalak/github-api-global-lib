@@ -40,7 +40,7 @@ def environmentVars(){
             buildUrl       : env.BUILD_URL)
 }
 
-def paramsMethod(){
+def paramsMethod(Map params){
     echo params.TEST_PARAM
     return params
 }
