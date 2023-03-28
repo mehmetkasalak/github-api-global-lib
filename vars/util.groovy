@@ -40,11 +40,10 @@ def environmentVars(){
             buildUrl       : env.BUILD_URL)
 }
 
-def paramsMethod(String params){
+def paramsMethod(params){
     def slurper = new JsonSlurper()
-    echo params
-    def paramsObj = slurper.parseText(mapToString(params))
-    echo paramsObj
-    //echo paramsObj.TIMEOUT
-    return params
+    def paramsObj = slurper.parseText(JsonOutput.toJson(params))
+    //echo paramsObj
+    echo paramsObj.TIMEOUT
+    return paramsObj
 }
