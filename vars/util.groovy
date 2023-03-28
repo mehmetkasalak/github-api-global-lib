@@ -42,7 +42,7 @@ def environmentVars(){
 
 def paramsMethod(String params){
     def slurper = new JsonSlurper()
-    def paramsObj = paramsObj.parseText(params)
+    def paramsObj = slurper.parseText(params)
     echo paramsObj.TIMEOUT
     return params
 }
