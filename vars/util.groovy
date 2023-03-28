@@ -1,8 +1,8 @@
 #!groovy
 
-
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 
 @NonCPS
 def mapToString(map) {
@@ -40,7 +40,9 @@ def environmentVars(){
             buildUrl       : env.BUILD_URL)
 }
 
-def paramsMethod(Map params){
-    echo params.TEST_PARAM
+def paramsMethod(String params){
+    def slurper = new JsonSlurper()
+    def paramsObj = paramsObj.parseText(params)
+    echo paramsObj.TIMEOUT
     return params
 }
