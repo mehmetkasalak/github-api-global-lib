@@ -49,38 +49,9 @@ def paramsMethod(params){
     return paramsObj
 }
 
-def getAssetsStages(){
-    def assetsStages = [
-        build: [
-            'Build Assets': {
-                stage('Build Assets'){
-                    parallel ([
-                        'Build B2C Page-Layout Assets': {
-                            stage('Build B2C Page-Layout Assets') {
-                                echo 'Build B2C Page-Layout Assets'
-                            }
-                        },
-                        'Build B2C Email Assets': {
-                            stage('Build B2C Email Assets') {
-                                echo 'Build B2C Email Assets'
-                            }
-                        }
-                    ])
-                }
-            }
-        ],
-        publish: [
-            'Publish Assets': {
-                stage('Publish Assets'){
-                    stage('Publish B2C Page-Layout Assets'){
-                         echo 'Publish B2C Page-Layout Assets'
-                    }
-                    stage('Publish Email Assets'){
-                        echo 'Publish Email Assets'
-                    }
-                }
-            }
-        ]
-    ]
-    return assetsStages
+def shouldCleanWorkspace(){
+    println env.CLEAN_WORKSPACE
+    println env.DEPLOYTO
+    return env.CLEAN_WORKSPACE
 }
+
