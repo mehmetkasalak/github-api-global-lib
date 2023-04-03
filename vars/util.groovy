@@ -100,7 +100,10 @@ def parallelStages(){
     return [
        create : [
         'Create Licensing.Data.Grpc nuget package': {
-            stage('Create Licensing.Data.Grpc nuget package'){            
+            stage('Create Licensing.Data.Grpc nuget package'){
+	    	when{
+	             beforeAgent true
+	        }
                 script{
                     echo 'Create Licensing.Data.Grpc nuget package'
                 }
@@ -108,6 +111,9 @@ def parallelStages(){
         },
         'Create Licensing.Products.API.Grpc nuget package': {
             stage('Create Licensing.Products.API.Grpc nuget package'){
+	    	when{
+		    beforeAgent true
+	        }
                 script{
                     echo 'Create Licensing.Products.API.Grpc nuget package'
                 }
