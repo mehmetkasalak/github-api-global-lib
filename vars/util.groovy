@@ -87,13 +87,12 @@ def stageObj(){
 		publish: [
 			'Publish Web App Docker Image to ECR': {
 				stage('Publish Web App Docker Image to ECR'){
-				echo "Publish Web App"
+					echo "Publish Web App"
 				}
 			}
 		]
     ]
-    println new JsonBuilder(webAppStages.build).toString()
-    println new JsonBuilder(webAppStages.publish).toString()
+   return webAppStages
 }
 
 def parallelStages(){
@@ -101,9 +100,6 @@ def parallelStages(){
        create : [
         'Create Licensing.Data.Grpc nuget package': {
             stage('Create Licensing.Data.Grpc nuget package'){
-	    	when{
-	             beforeAgent true
-	        }
                 script{
                     echo 'Create Licensing.Data.Grpc nuget package'
                 }
@@ -111,9 +107,6 @@ def parallelStages(){
         },
         'Create Licensing.Products.API.Grpc nuget package': {
             stage('Create Licensing.Products.API.Grpc nuget package'){
-	    	when{
-		    beforeAgent true
-	        }
                 script{
                     echo 'Create Licensing.Products.API.Grpc nuget package'
                 }
