@@ -72,10 +72,10 @@ def webAppStages = [
 						},
 						'Test & Scan Web App': {
 							stage('Test Web App'){
-								echo "Test Web App")
+								echo "Test Web App"
 							}
 							stage('Scan Web App'){
-								echo "Scan Web App")
+								echo "Scan Web App"
 							}
 						}
 					])
@@ -86,7 +86,7 @@ def webAppStages = [
     publish: [
         'Publish Web App Docker Image to ECR': {
             stage('Publish Web App Docker Image to ECR'){
-                echo "Publish Web App")
+                echo "Publish Web App"
             }
         }
     ]
