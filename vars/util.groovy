@@ -60,36 +60,29 @@ def stageObj(){
 		build: [
 			'Build Web App': {
 				stage('Build Web App'){
-						stage('Web App Tasks'){
-							parallel ([
-								failFast: true,
-								'Build & Package Web App': {
-									stage('Build Web App'){
-										script{
-											echo "Build Web App"
-										}
-									}
-									stage('Package Web App'){
-										script{
-											echo "Package Web App"
-										}
-									}
-								},
-								'Test & Scan Web App': {
-									stage('Test Web App'){
-										script{
-											echo "Test Web App"
-										}
-									}
-									stage('Scan Web App'){
-										script{
-											echo "Scan Web App"
-										}
-									}
-								}
-							])
+					stage('Build Web App'){
+						script{
+							echo 'Build Web App'
+							}
 						}
-				}
+						stage('Package Web App'){
+							script{
+								echo "Package Web App"
+							}
+						}
+					},
+					stage('Test & Scan'){
+						stage('Test Web App'){
+							script{
+								echo "Test Web App"
+							}
+						}
+						stage('Scan Web App'){
+							script{
+								echo "Scan Web App"
+							}
+						}
+					}
 			}
 		],
 		publish: [
