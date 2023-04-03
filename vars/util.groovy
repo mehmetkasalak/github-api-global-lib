@@ -65,18 +65,26 @@ def stageObj(){
 								failFast: true,
 								'Build & Package Web App': {
 									stage('Build Web App'){
-										echo "Build Web App"
+										script{
+											echo "Build Web App"
+										}
 									}
 									stage('Package Web App'){
-										echo "Package Web App"
+										script{
+											echo "Package Web App"
+										}
 									}
 								},
 								'Test & Scan Web App': {
 									stage('Test Web App'){
-										echo "Test Web App"
+										script{
+											echo "Test Web App"
+										}
 									}
 									stage('Scan Web App'){
-										echo "Scan Web App"
+										script{
+											echo "Scan Web App"
+										}
 									}
 								}
 							])
@@ -87,7 +95,9 @@ def stageObj(){
 		publish: [
 			'Publish Web App Docker Image to ECR': {
 				stage('Publish Web App Docker Image to ECR'){
-					echo "Publish Web App"
+					script{
+						echo "Publish Web App"
+					}
 				}
 			}
 		]
