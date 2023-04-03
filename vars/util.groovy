@@ -55,48 +55,6 @@ def shouldCleanWorkspace(){
     return env.CLEAN_WORKSPACE
 }
 
-def stageObj(){
-    return [
-		build: [
-			'Build Web App': {
-				stage('Build Web App'){
-					stage('Build Web App'){
-						script{
-							echo 'Build Web App'
-							}
-						}
-						stage('Package Web App'){
-							script{
-								echo "Package Web App"
-							}
-						}
-					}
-					stage('Test & Scan'){
-						stage('Test Web App'){
-							script{
-								echo "Test Web App"
-							}
-						}
-						stage('Scan Web App'){
-							script{
-								echo "Scan Web App"
-							}
-						}
-					}
-			}
-		],
-		publish: [
-			'Publish Web App Docker Image to ECR': {
-				stage('Publish Web App Docker Image to ECR'){
-					script{
-						echo "Publish Web App"
-					}
-				}
-			}
-		]
-    ]
-}
-
 def parallelStages(){
     return [
        create : [
@@ -118,3 +76,41 @@ def parallelStages(){
     ]
 }
 
+
+def parallelBuildStages(){
+    return [
+       build : [
+        'Build Licensing.Data.Grpc nuget package': {
+            stage('Create Licensing.Data.Grpc nuget package'){
+				stage('Build Licensing.Data.API docker image'){
+					when{
+						beforeAgent true
+					}
+					steps{
+						script{
+							echo 'Build Licensing.Data.API docker image'
+						}
+					}
+				}
+				stage('Build Licensing.B2C.API docker image'){
+					when{
+						beforeAgent true
+					}
+					steps{
+						script{
+							echo 'Build Licensing.B2C.API docker image'
+						}
+					}
+				}
+            }
+        },
+        'Create Licensing.Products.API.Grpc nuget package': {
+            stage('Create Licensing.Products.API.Grpc nuget package'){
+                script{
+                    echo 'Create Licensing.Products.API.Grpc nuget package'
+                }
+            }
+         }
+       ]
+    ]
+}
