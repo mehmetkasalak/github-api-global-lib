@@ -55,44 +55,43 @@ def shouldCleanWorkspace(){
     return env.CLEAN_WORKSPACE
 }
 
-def webAppStages = [
-    build: [
-        'Build Web App': {
-            stage('Build Web App'){
-				stage('Web App Tasks'){
-					parallel ([
-						failFast: true,
-						'Build & Package Web App': {
-							stage('Build Web App'){
-								echo "Build Web App"
-							}
-							stage('Package Web App'){
-								echo "Package Web App"
-							}
-						},
-						'Test & Scan Web App': {
-							stage('Test Web App'){
-								echo "Test Web App"
-							}
-							stage('Scan Web App'){
-								echo "Scan Web App"
-							}
-						}
-					])
-				}
-            }
-        }
-    ],
-    publish: [
-        'Publish Web App Docker Image to ECR': {
-            stage('Publish Web App Docker Image to ECR'){
-                echo "Publish Web App"
-            }
-        }
-    ]
-]
-
 def stageObj(){
+    def webAppStages = [
+		build: [
+			'Build Web App': {
+				stage('Build Web App'){
+						stage('Web App Tasks'){
+							parallel ([
+								failFast: true,
+								'Build & Package Web App': {
+									stage('Build Web App'){
+										echo "Build Web App"
+									}
+									stage('Package Web App'){
+										echo "Package Web App"
+									}
+								},
+								'Test & Scan Web App': {
+									stage('Test Web App'){
+										echo "Test Web App"
+									}
+									stage('Scan Web App'){
+										echo "Scan Web App"
+									}
+								}
+							])
+						}
+				}
+			}
+		],
+		publish: [
+			'Publish Web App Docker Image to ECR': {
+				stage('Publish Web App Docker Image to ECR'){
+				echo "Publish Web App"
+				}
+			}
+		]
+    ]
     println new JsonBuilder(webAppStages.build).toString()
     println new JsonBuilder(webAppStages.publish).toString()
 }
