@@ -70,7 +70,7 @@ def stageObj(){
 								echo "Package Web App"
 							}
 						}
-					},
+					}
 					stage('Test & Scan'){
 						stage('Test Web App'){
 							script{
