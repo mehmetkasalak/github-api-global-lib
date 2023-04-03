@@ -56,7 +56,7 @@ def shouldCleanWorkspace(){
 }
 
 def stageObj(){
-    def webAppStages = [
+    return [
 		build: [
 			'Build Web App': {
 				stage('Build Web App'){
@@ -92,7 +92,6 @@ def stageObj(){
 			}
 		]
     ]
-   return webAppStages
 }
 
 def parallelStages(){
